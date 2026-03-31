@@ -2,11 +2,26 @@
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
-data/raw/*.csv
-data/raw/*.zip
-data/raw/*.parquet
-data/raw/*.xlsx
+
+# Données brutes (à télécharger via src/download_data.py)
+data/raw/
+
+# Données traitées (générées par le notebook 02)
+data/processed/*.parquet
+data/processed/*.csv
+
+# Ressources externes (géométrie, etc.)
+data/external/*.geojson
+data/external/*.json
+
+# Sorties générées (cartes, graphiques)
 outputs/*.png
 outputs/*.html
+outputs/*.pdf
+
+# Système d'exploitation
 .DS_Store
+
+# Éditeurs
 .idea/
+.vscode/
