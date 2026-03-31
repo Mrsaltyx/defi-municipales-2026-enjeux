@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+data/raw/*.csv
+data/raw/*.zip
+data/raw/*.parquet
+data/raw/*.xlsx
+outputs/*.png
+outputs/*.html
+.DS_Store
+.idea/
