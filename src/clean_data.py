@@ -17,39 +17,38 @@ def load_csv(filepath, sep=";", encoding="utf-8", low_memory=False, **kwargs):
 def normalize_code_insee(code):
     if pd.isna(code):
         return code
-    code = str(code).strip().replace(" ", "")
-    code = code.split("/")[0]
-    while len(code) < 5 and len(code) < 3:
-        code = "0" + code
-    if len(code) == 3:
-        code = "0" + code
-    if len(code) == 2:
-        code = code
-    return code.zfill(5)
+    code_str = str(code).strip().replace(" ", "")
+    if code_str.endswith(".0"):
+        code_str = code_str[:-2]
+    code_str = code_str.split("/")[0]
+    if not code_str:
+        return ""
+    return code_str.zfill(5)
 
 
 def normalize_code_departement(code):
     if pd.isna(code):
         return code
-    code = str(code).strip().upper()
-    code = code.replace(" ", "").replace("-", "")
-    if len(code) == 1:
-        code = "0" + code
-    if code in ("2A", "2B"):
-        return code
-    return code.zfill(2)
+    code_str = str(code).strip().upper().replace(" ", "").replace("-", "")
+    if code_str.endswith(".0"):
+        code_str = code_str[:-2]
+    if len(code_str) == 1:
+        code_str = "0" + code_str
+    if code_str in ("2A", "2B"):
+        return code_str
+    return code_str.zfill(2)
 
 
 def clean_pct(col):
-    if col.dtype == "object":
-        return (
-            col.astype(str)
-            .str.replace("%", "", regex=False)
-            .str.replace(",", ".", regex=False)
-            .str.strip()
-            .pipe(pd.to_numeric, errors="coerce")
-        )
-    return pd.to_numeric(col, errors="coerce")
+    if pd.api.types.is_numeric_dtype(col):
+        return pd.to_numeric(col, errors="coerce")
+    cleaned = (
+        col.astype(str)
+        .str.replace("%", "", regex=False)
+        .str.replace(",", ".", regex=False)
+        .str.strip()
+    )
+    return pd.to_numeric(cleaned, errors="coerce")
 
 
 def save_processed(df, name, fmt="parquet"):

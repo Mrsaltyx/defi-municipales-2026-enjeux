@@ -39,8 +39,8 @@ RESOURCES = {
         "url": "https://data.education.gouv.fr/api/explore/v2.1/catalog/datasets/fr-en-indicateurs_personnels_etablissements1d/exports/csv?use_labels=true",
     },
     "filosofi": {
-        "filename": "filosofi_commut.csv",
-        "url": "https://www.insee.fr/fr/statistiques/fichier/6457248/base-filosofi-communes-2021.zip",
+        "filename": "base-filosofi-communes-2021.zip",
+        "url": "https://www.insee.fr/fr/statistiques/fichier/7756855/indic-struct-distrib-revenu-2021-COMMUNES_csv.zip",
     },
     "departements_geojson": {
         "filename": "departements.geojson",
