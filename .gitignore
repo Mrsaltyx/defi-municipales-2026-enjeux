@@ -10,3 +10,4 @@ outputs/*.png
 outputs/*.html
 .DS_Store
 .idea/
+scratch/
